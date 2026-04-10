@@ -1,6 +1,6 @@
-# Mini Libreria per Sistemi Lineari - Metodi del Calcolo Scientifico
+# Mini Libreria per Sistemi Lineari - Metodi per il Calcolo Scientifico
 
-Progetto per il corso di **Metodi del Calcolo Scientifico** (AA 2025-2026).  
+Progetto per il corso di **Metodi per il Calcolo Scientifico** (AA 2025-2026).  
 L'obiettivo è l'implementazione e la validazione di solutori iterativi per sistemi lineari con matrici simmetriche e definite positive.
 
 ## 🚀 Caratteristiche
