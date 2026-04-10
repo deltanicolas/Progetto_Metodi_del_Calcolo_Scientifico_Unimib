@@ -1,28 +1,30 @@
 # Mini Libreria per Sistemi Lineari - Metodi del Calcolo Scientifico
 
 Progetto per il corso di **Metodi del Calcolo Scientifico** (AA 2025-2026).  
-[cite_start]L'obiettivo è l'implementazione e la validazione di solutori iterativi per sistemi lineari con matrici simmetriche e definite positive.
+L'obiettivo è l'implementazione e la validazione di solutori iterativi per sistemi lineari con matrici simmetriche e definite positive.
 
 ## 🚀 Caratteristiche
-[cite_start]La libreria implementa i seguenti metodi iterativi partendo da un vettore iniziale nullo ($x^{(0)} = 0$):
-* [cite_start]**Jacobi** 
-* [cite_start]**Gauss-Seidel** 
-* [cite_start]**Gradiente** 
-* [cite_start]**Gradiente Coniugato**
+La libreria implementa i seguenti metodi iterativi partendo da un vettore iniziale nullo ($x^{(0)} = 0$):
+* **Jacobi**
+* **Gauss-Seidel**
+* **Gradiente**
+* **Gradiente Coniugato**
+
+
 
 ## 🛠️ Requisiti e Dipendenze
-* [cite_start]**Linguaggio:** Python [cite: 5]
-* [cite_start]**Gestione Dati:** NumPy (per strutture dati di matrici e vettori) 
-* [cite_start]**Formato Input:** XXXXX Supporto per file `.mtx` (To be Defined) 
+* **Linguaggio:** Python
+* **Gestione Dati:** NumPy / SciPy 
+* **Formato Input:** XXX da definire Supporto per file `.mtx` 
+
+
 
 
 
 ## 📂 Dataset
-Il codice è testato sulle matrici sparse fornite:
-
----To DO---
-
+La libreria è testata sulle matrici sparse fornite per il progetto:
+* `spa1.mtx`, `spa2.mtx`
+* `vem1.mtx`, `vem2.mtx`
 
 ---
-**Autori:** Nicolas Chines, Nome Cognome
-**Corso:** Metodi del Calcolo Scientifico - Unimib
+**Autori:** Nicolas chines, Nome Cognome
