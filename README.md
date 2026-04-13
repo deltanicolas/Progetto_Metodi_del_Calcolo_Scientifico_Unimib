@@ -15,7 +15,7 @@ La libreria implementa i seguenti metodi iterativi partendo da un vettore inizia
 ## 🛠️ Requisiti e Dipendenze
 * **Linguaggio:** Python
 * **Gestione Dati:** NumPy / SciPy 
-* **Formato Input:** XXX da definire Supporto per file `.mtx` 
+* **Plot dei Grafici** Matplotlib
 
 
 
