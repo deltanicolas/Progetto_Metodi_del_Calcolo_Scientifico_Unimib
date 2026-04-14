@@ -23,8 +23,9 @@ def main(argv, argc):
     #array_mat = m.toarray()
 
     m = utility.load_matrix(argv[1]).toarray()
-
-    solver = solvers.MatSolvers(m, tolerance)
+    x_exact, b = utility.setup_system(m)
+    
+    solver = solvers.MatSolvers(m,b, tolerance)
 
     #TODO For each solver method print result
     
