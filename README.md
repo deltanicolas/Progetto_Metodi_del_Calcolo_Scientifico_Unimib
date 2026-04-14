@@ -11,14 +11,10 @@ La libreria implementa i seguenti metodi iterativi partendo da un vettore inizia
 * **Gradiente Coniugato**
 
 
-
 ## 🛠️ Requisiti e Dipendenze
 * **Linguaggio:** Python
 * **Gestione Dati:** NumPy / SciPy 
 * **Plot dei Grafici** Matplotlib
-
-
-
 
 
 ## 📂 Dataset
