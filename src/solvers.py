@@ -1,17 +1,93 @@
-class MatSolvers():
-    def __init__(self, mat, tol, max_iter=5000):
-        self.mat = mat
-        self.tolerance = tol
+import numpy as np
+import time
+
+class MatSolvers:
+    def __init__(self, mat, b, tol, max_iter=20000):
+        self.A = mat
+        self.b = b
+        self.tol = tol
         self.max_iter = max_iter
+        self.n = mat.shape[0]
+
+    # =========================
+    # Utility interna
+    # =========================
+    def _stopping_criterion(self, x):
+        """
+        Calcola: ||Ax - b|| / ||b|| 
+        """
+        res = self.A.dot(x) - self.b
+        return np.linalg.norm(res) / np.linalg.norm(self.b)
+
+    def _initial_guess(self):
+        return np.zeros(self.n)
+
+    # =========================
+    # Solvers
+    # =========================
 
     def jacobi(self):
-        return 0
+        x = self._initial_guess()
+        it = 0
+        D_diag = self.A.diagonal()
+        conv = False
 
+        if np.any(D_diag == 0):
+            print("Errore: Almeno un elemento sulla diagonale è zero. Jacobi Error.")
+            return x, it, False, 0.0
+
+        start_t = time.perf_counter()
+
+        while it < self.max_iter:
+            residual = self.b - self.A.dot(x)
+            x = x + (residual / D_diag)
+            it += 1
+            if self._stopping_criterion(x) < self.tol:
+                conv = True
+                break
+  
+        end_t = time.perf_counter()
+
+        return x, it, conv, end_t - start_t
+    
     def gauss_seidel(self):
-        return 0
+        x = self._initial_guess()
+        it = 0
+        
+        start_t = time.perf_counter()
+        
+        # --- TODO: Implementazione logica Gauss-Seidel ---
 
-    def gradiente(self):
-        return 0
+        end_t = time.perf_counter()
 
-    def gradiente_coniugato(self):
-        return 0
+        conv = self._stopping_criterion(x) < self.tol
+        
+        return x, it, conv, end_t - start_t
+    
+    def gradient(self):
+        x = self._initial_guess()
+        it = 0
+        
+        start_t = time.perf_counter()
+        
+        # --- TODO: Implementazione logica Gradiente ---
+        
+        end_t = time.perf_counter()
+
+        conv = self._stopping_criterion(x) < self.tol
+        
+        return x, it, conv, end_t - start_t
+
+    def gradient_conjugate(self):
+        x = self._initial_guess()
+        it = 0
+        
+        start_t = time.perf_counter()
+        
+        # --- TODO: Implementazione logica Gradiente Coniugato ---
+        
+        end_t = time.perf_counter()
+
+        conv = self._stopping_criterion(x) < self.tol
+        
+        return x, it, conv, end_t - start_t
