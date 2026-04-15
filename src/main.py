@@ -2,33 +2,17 @@
 
 import sys
 import os
-
+import argparser
 import utility
 import solvers
 
 
-def main(argv, argc):
-    if argc < 3:
-        print(f'Usage: {argv[0]} <mmx file> <tolerance>')
-        return -1
-
-    # Check if tolerance is integer
-    try:
-        tolerance = float(argv[2])
-    except ValueError:
-        print('Specify float value for tolerance')
-        return -1
-
-    #m = mmread(argv[1], spmatrix=True)
-    #array_mat = m.toarray()
-
-    m = utility.load_matrix(argv[1]).toarray()
-    x_exact, b = utility.setup_system(m)
-    
-    solver = solvers.MatSolvers(m,b, tolerance)
-
-    #TODO For each solver method print result
-    
-
 if __name__ == '__main__':
-    main(sys.argv, len(sys.argv))
+
+    args = vars(argparser.parse_arguments())
+
+    A = utility.load_matrix(args['file'])
+    x_exact, b = utility.setup_system(A)
+    solver = solvers.MatSolvers(A, b, args['tolerance'])
+    utility.plot_sparsity(A, matrix_name=args['file'].stem)  #.stem is used to get filename without extension
+    #TODO For each solver method print result
