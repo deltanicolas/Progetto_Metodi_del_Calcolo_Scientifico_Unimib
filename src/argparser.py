@@ -18,9 +18,17 @@ def parse_arguments() -> argparse.Namespace:
 
 
 def check_tolerance(value) -> float:
-    fvalue = float(value)
-    if not  fvalue > 0:
-        raise argparse.ArgumentTypeError("The tolerance threshold T must be a positive number ( Can be in the form 0.000001 or 1e-6).")
+    try:
+        fvalue = float(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(
+            f"'{value}' is not a valid number. The tolerance must be a numeric value "
+            "(e.g., 0.000001 or 1e-6)."
+        )
+    if not fvalue > 0:
+        raise argparse.ArgumentTypeError(
+            f"Tolerance value {value} must be a positive number."
+        )
     return fvalue
 
 
