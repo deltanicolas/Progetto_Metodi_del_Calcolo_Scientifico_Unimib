@@ -28,4 +28,4 @@ def run_specific_test(matrix_name, method_name, tol):
 
 
 if __name__ == "__main__":
-    run_specific_test("spa2", "jacobi", 1e-10)
+    run_specific_test("spa1", "jacobi", 1e-10)

@@ -12,6 +12,7 @@ class MatSolvers:
     # =========================
     # Utility interna
     # =========================
+    
     def _stopping_criterion(self, x):
         """
         Calcola: ||Ax - b|| / ||b|| 
@@ -40,7 +41,7 @@ class MatSolvers:
 
         while it < self.max_iter:
             residual = self.b - self.A.dot(x)
-            x = x + (residual / D_diag)
+            x = x + (residual / D_diag) # the same as x = (b - (A - D) @ x) @ D^-1 but more efficient
             it += 1
             if self._stopping_criterion(x) < self.tol:
                 conv = True

@@ -91,7 +91,7 @@ def plot_sparsity(A, matrix_name="Matrice"):
     plt.ylabel("Righe")
     
     clean_name = matrix_name.replace(".mtx", "")
-    output_path = f"Data/Plot/{clean_name}_sparsity.png"
+    output_path = f"../Data/Plot/{clean_name}_sparsity.png"
     
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
