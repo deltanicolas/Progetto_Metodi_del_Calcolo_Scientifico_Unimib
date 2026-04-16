@@ -22,7 +22,7 @@ class MatSolvers:
 
     def _initial_guess(self):
         return np.zeros(self.n)
-
+      
     # =========================
     # Solvers
     # =========================
@@ -34,7 +34,7 @@ class MatSolvers:
         conv = False
 
         if np.any(D_diag == 0):
-            print("Errore: Almeno un elemento sulla diagonale è zero. Jacobi Error.")
+            print("Error: The matrix has zero diagonal entries. Jacobi method may not converge.") 
             return x, it, False, 0.0
 
         start_t = time.perf_counter()

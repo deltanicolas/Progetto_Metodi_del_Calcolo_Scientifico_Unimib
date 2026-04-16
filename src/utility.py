@@ -37,6 +37,8 @@ def setup_system(A):
     """
     n = A.shape[0]
     x_exact = np.ones(n)
+
+
     b = A.dot(x_exact)
     
     return x_exact, b
@@ -91,15 +93,18 @@ def plot_sparsity(A, matrix_name="Matrice"):
     plt.ylabel("Righe")
     
     clean_name = matrix_name.replace(".mtx", "")
-    output_path = f"../Data/Plot/{clean_name}_sparsity.png"
-    
+    output_path = f"../Data/Plot/{clean_name}_sparsity.png" 
+
+    #TODO:hardcoded path is not ideal,could use pathlib and make it more flexible
+    #we can also just do plot.show and let the user decide where to save it
+    plt.show()
     plt.savefig(output_path, dpi=300, bbox_inches='tight')
     plt.close()
     print(f"Grafico ottimizzato ({n_rows}x{n_rows}) salvato in: {output_path}")
 
 
 if __name__ == "__main__":
-    test_file = "Data/spa1.mtx" 
+    test_file = "../Data/spa2.mtx" 
     
     print(f"--- Test Utility ---")
     try:
