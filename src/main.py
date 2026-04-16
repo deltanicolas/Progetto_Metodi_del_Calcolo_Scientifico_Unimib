@@ -8,11 +8,7 @@ import solvers
 def main():
 
     args = vars(argparser.parse_arguments())
-
-    A = utility.load_matrix(args['file'])
-    x_exact, b = utility.setup_system(A)
-    solver = solvers.MatSolvers(A, b, args['tolerance'])
-    utility.plot_sparsity(A, matrix_name=args['file'].stem) #.stem is used to get filename without extension
+    
     solver_map = {
         1: 'jacobi',
         2: 'gs',
