@@ -23,4 +23,5 @@ La libreria è testata sulle matrici sparse fornite per il progetto:
 * `vem1.mtx`, `vem2.mtx`
 
 ---
-**Autori:** Nicolas chines, Nome Cognome
+**Autori:** Nicolas chines
+- Jacopo Borgato 866305
