@@ -16,7 +16,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument('-t', '--tolerance', type=check_tolerance, required=True,
                         help="Relative residual tolerance for the stopping criterion: ||Ax-b||/||b|| < tol",
                         default=1e-6)
-    parser.add_argument('-s', '--solver', type=int, 
+    parser.add_argument('-s', '--solver', type=check_solver, required=False,
                         choices=[0, 1, 2, 3, 4], 
                         default=0,
                         help="Solver method to run: 0=run all, 1=Jacobi, 2=Gauss-Seidel, 3=Gradient, 4=Conjugate Gradient")
@@ -44,3 +44,16 @@ def check_mtx(value) -> pathlib.Path:
     if not path.is_file() or not str(path).endswith('.mtx'):
         raise argparse.ArgumentTypeError(f"{value} the file does not exist or is not a .mtx file.")
     return path
+
+def check_solver(value) -> int:
+    try:
+        ivalue = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(
+            f"'{value}' not a valid integer. Solver ID must be an integer (0, 1, 2, 3, or 4)."
+        )
+    if ivalue not in [0, 1, 2, 3, 4]:
+        raise argparse.ArgumentTypeError(
+            f"ID {value} is not valid. Solver ID must be 0 (all), 1 (Jacobi), 2 (Gauss-Seidel), 3 (Gradient), or 4 (Conjugate Gradient)."
+        )
+    return ivalue
