@@ -19,7 +19,7 @@ def run_specific_test(path, method_name, tol):
         print(f"Metodo {method_name} non trovato.")
         return
 
-    print(f"\nEseguendo {method_name.upper()} su {path.stem} (tol: {tol})")
+    print(f"\nEseguendo {method_name.upper()} su {path} (tol: {tol})")
     x_c, it, conv, dt = methods[method_name]()
     err = compute_relative_error(x_exact, x_c)
 
@@ -37,4 +37,4 @@ def run_specific_test(path, method_name, tol):
 
 
 if __name__ == "__main__":
-    run_specific_test("../Data/spa1.mtx", "jacobi", 1e-8)
+    run_specific_test("../Data/spa1.mtx", "grad", 1e-10)
