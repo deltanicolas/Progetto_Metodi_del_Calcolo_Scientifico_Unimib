@@ -54,21 +54,19 @@ class MatSolvers:
     def gauss_seidel(self):
         x = self._initial_guess()
         it = 0
-        
+        conv = False
         start_t = time.perf_counter()
         
         # --- TODO: Implementazione logica Gauss-Seidel ---
 
         end_t = time.perf_counter()
-
-        conv = self._stopping_criterion(x) < self.tol
         
         return x, it, conv, end_t - start_t
     
     def gradient(self):
         x = self._initial_guess()
         it = 0
-        
+        conv = False
         start_t = time.perf_counter()
         
         while it < self.max_iter:
@@ -83,15 +81,13 @@ class MatSolvers:
                 break
         
         end_t = time.perf_counter()
-
-        conv = self._stopping_criterion(x) < self.tol
         
         return x, it, conv, end_t - start_t
 
     def gradient_conjugate(self):
         x = self._initial_guess()
         it = 0
-        
+        conv = False
         start_t = time.perf_counter()
         
         '''
@@ -108,7 +104,5 @@ class MatSolvers:
         '''
         
         end_t = time.perf_counter()
-
-        conv = self._stopping_criterion(x) < self.tol
         
         return x, it, conv, end_t - start_t
