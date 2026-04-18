@@ -71,7 +71,16 @@ class MatSolvers:
         
         start_t = time.perf_counter()
         
-        # --- TODO: Implementazione logica Gradiente ---
+        while it < self.max_iter:
+            r = self.b - self.A.dot(x)
+            #A_residual = self.A.dot(x)
+            y = self.A.dot(r)
+            alpha = r.dot(r) / r.dot(y)
+            x = x + alpha * r
+            it += 1
+            if self._stopping_criterion(x) < self.tol:
+                conv = True
+                break
         
         end_t = time.perf_counter()
 
@@ -85,7 +94,18 @@ class MatSolvers:
         
         start_t = time.perf_counter()
         
-        # --- TODO: Implementazione logica Gradiente Coniugato ---
+        '''
+        while it < self.max_iter:
+            r = self.b - self.A.dot(x)
+            #A_residual = self.A.dot(x)
+            y = self.A.dot(r)
+            alpha = r.dot(r) / r.dot(y)
+            x = x + alpha * r
+            it += 1
+            if self._stopping_criterion(x) < self.tol:
+                conv = True
+                break
+        '''
         
         end_t = time.perf_counter()
 
