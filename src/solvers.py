@@ -103,24 +103,20 @@ class MatSolvers:
 
     def gradient_conjugate(self):
         x = self._initial_guess()
-        d = - (self.A.dot(x) - self.b)
+        r = self.b - self.A.dot(x)
+        d = r.copy()
         it = 0
         conv = False
         start_t = time.perf_counter()
         
-        # Sappiamo che il metodo del gradiente converge in al piu n iterazioni
-        # dove n = dimensione della matrice
-        # invece che usare il numero massimo di iterazioni controllare n
         while it < self.n:
-            r = self.b - self.A.dot(x)
             y = self.A.dot(d)
-            z = self.A.dot(r)
-            alpha = d.dot(r) / d.dot(y)
+            alpha = r.dot(r) / d.dot(y)
             x += alpha * d
-            r = self.b - self.A.dot(x)
-            w = self.A.dot(r)
-            beta = d.dot(w) / d.dot(y)
-            d = r - beta * d
+            r_new = r - alpha * y
+            beta = r_new.dot(r_new) / r.dot(r)
+            d = r_new + beta * d
+            r = r_new
             it += 1
             if self._stopping_criterion(x) < self.tol:
                 conv = True
