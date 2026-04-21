@@ -53,11 +53,29 @@ class MatSolvers:
     
     def gauss_seidel(self):
         x = self._initial_guess()
+        D_diag = self.A.diagonal()
+        L = np.tril(self.A.toarray())
         it = 0
         conv = False
+
+        # TODO: va controllata anche dominanza diagonale?
+        if np.any(D_diag == 0):
+            print("Error: The matrix has zero diagonal entries. Gauss-Seidel method may not converge.") 
+            return x, it, False, 0.0
+
         start_t = time.perf_counter()
         
-        # --- TODO: Implementazione logica Gauss-Seidel ---
+        while it < self.max_iter:
+            r = self.b - self.A.dot(x)
+            y = np.zeros_like(r, dtype=float)
+            for i in range(self.n):
+                s = r[i] - L[i, :i].dot(y[:i])
+                y[i] = s / L[i, i]
+            x += y
+            it += 1
+            if self._stopping_criterion(x) < self.tol:
+                conv = True
+                break
 
         end_t = time.perf_counter()
         
@@ -98,7 +116,7 @@ class MatSolvers:
         # Sappiamo che il metodo del gradiente converge in al piu n iterazioni
         # dove n = dimensione della matrice
         # invece che usare il numero massimo di iterazioni controllare n
-        while it < len(self.b):
+        while it < self.n:
             r = self.b - self.A.dot(x)
             y = self.A.dot(r)
             alpha = r.dot(r) / r.dot(y)
