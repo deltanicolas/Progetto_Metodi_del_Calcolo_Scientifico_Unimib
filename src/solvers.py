@@ -83,12 +83,35 @@ class MatSolvers:
     
     def gradient(self):
         x = self._initial_guess()
-        d = - (self.A.dot(x) - self.b)
         it = 0
         conv = False
         start_t = time.perf_counter()
         
         while it < len(self.b):
+            r = self.b - self.A.dot(x)
+            y = self.A.dot(r)
+            alpha = r.dot(r) / r.dot(y)
+            x = x + alpha * r
+            it += 1
+            if self._stopping_criterion(x) < self.tol:
+                conv = True
+                break
+        
+        end_t = time.perf_counter()
+        
+        return x, it, conv, end_t - start_t
+
+    def gradient_conjugate(self):
+        x = self._initial_guess()
+        d = - (self.A.dot(x) - self.b)
+        it = 0
+        conv = False
+        start_t = time.perf_counter()
+        
+        # Sappiamo che il metodo del gradiente converge in al piu n iterazioni
+        # dove n = dimensione della matrice
+        # invece che usare il numero massimo di iterazioni controllare n
+        while it < self.n:
             r = self.b - self.A.dot(x)
             y = self.A.dot(d)
             z = self.A.dot(r)
@@ -107,25 +130,4 @@ class MatSolvers:
         
         return x, it, conv, end_t - start_t
 
-    def gradient_conjugate(self):
-        x = self._initial_guess()
-        it = 0
-        conv = False
-        start_t = time.perf_counter()
-        
-        # Sappiamo che il metodo del gradiente converge in al piu n iterazioni
-        # dove n = dimensione della matrice
-        # invece che usare il numero massimo di iterazioni controllare n
-        while it < self.n:
-            r = self.b - self.A.dot(x)
-            y = self.A.dot(r)
-            alpha = r.dot(r) / r.dot(y)
-            x = x + alpha * r
-            it += 1
-            if self._stopping_criterion(x) < self.tol:
-                conv = True
-                break
-        
-        end_t = time.perf_counter()
-        
-        return x, it, conv, end_t - start_t
+   
