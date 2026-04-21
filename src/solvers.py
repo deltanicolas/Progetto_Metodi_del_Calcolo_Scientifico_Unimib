@@ -65,16 +65,21 @@ class MatSolvers:
     
     def gradient(self):
         x = self._initial_guess()
+        d = - (self.A.dot(x) - self.b)
         it = 0
         conv = False
         start_t = time.perf_counter()
         
-        while it < self.max_iter:
+        while it < len(self.b):
             r = self.b - self.A.dot(x)
-            #A_residual = self.A.dot(x)
-            y = self.A.dot(r)
-            alpha = r.dot(r) / r.dot(y)
-            x = x + alpha * r
+            y = self.A.dot(d)
+            z = self.A.dot(r)
+            alpha = d.dot(r) / d.dot(y)
+            x += alpha * d
+            r = self.b - self.A.dot(x)
+            w = self.A.dot(r)
+            beta = d.dot(w) / d.dot(y)
+            d = r - beta * d
             it += 1
             if self._stopping_criterion(x) < self.tol:
                 conv = True
@@ -90,10 +95,11 @@ class MatSolvers:
         conv = False
         start_t = time.perf_counter()
         
-        '''
-        while it < self.max_iter:
+        # Sappiamo che il metodo del gradiente converge in al piu n iterazioni
+        # dove n = dimensione della matrice
+        # invece che usare il numero massimo di iterazioni controllare n
+        while it < len(self.b):
             r = self.b - self.A.dot(x)
-            #A_residual = self.A.dot(x)
             y = self.A.dot(r)
             alpha = r.dot(r) / r.dot(y)
             x = x + alpha * r
@@ -101,7 +107,6 @@ class MatSolvers:
             if self._stopping_criterion(x) < self.tol:
                 conv = True
                 break
-        '''
         
         end_t = time.perf_counter()
         
