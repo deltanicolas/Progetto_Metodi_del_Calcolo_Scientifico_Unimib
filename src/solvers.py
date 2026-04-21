@@ -87,7 +87,7 @@ class MatSolvers:
         conv = False
         start_t = time.perf_counter()
         
-        while it < len(self.b):
+        while it < self.max_iter:
             r = self.b - self.A.dot(x)
             y = self.A.dot(r)
             alpha = r.dot(r) / r.dot(y)
