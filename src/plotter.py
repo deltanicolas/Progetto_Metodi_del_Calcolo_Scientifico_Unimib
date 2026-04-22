@@ -49,7 +49,7 @@ def generate_plots(csv_file="../Data/benchmark_results.csv"):
         ax2.set_ylabel('Numero di Iterazioni', fontsize=12, fontweight='bold')
         ax2.set_title('Velocità di Convergenza', color='#2c3e50')
 
-        plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+        plt.tight_layout(rect=(0.0, 0.03, 1.0, 0.95))
         
         save_name = output_path / f"analysis_{Path(mat).stem}.png"
         plt.savefig(save_name, dpi=300)
