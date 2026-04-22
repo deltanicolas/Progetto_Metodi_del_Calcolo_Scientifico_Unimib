@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import traceback
+
 import argparser
 from test import run_specific_test
 
@@ -19,8 +21,27 @@ def main():
     else:
         solvers_to_run = [solver_map[args['solver']]]
         
+    print(f"\n{'='*50}")
+    print(f" PROGETTO MCS - Analisi Sistema Lineare")
+    print(f" File: {args['file']}")
+    print(f" Tolleranza: {args['tolerance']}")
+    print(f"{'='*50}")
+
     for solver_name in solvers_to_run:
-        run_specific_test(args['file'], solver_name, args['tolerance'])
+        try:
+            res = run_specific_test(args['file'], solver_name, args['tolerance'])
+ 
+            print(f"\n> METODO: {solver_name.upper()}")
+            print(f"  - Iterazioni:  {res['iterations']}")
+            print(f"  - Tempo:       {res['time']:.4f} s")
+            print(f"  - Convergenza: {"True" if res['converged'] else 'False'}")
+            print(f"  - Errore Rel:  {res['error']:.2e}")
+            
+        except Exception as e:
+            print(f"\n[!] Errore durante l'esecuzione di {solver_name.upper()}:")
+            print(f"    {e}")
+
+    print(f"\n{'='*50}\n")
 
 
 if __name__ == '__main__':
