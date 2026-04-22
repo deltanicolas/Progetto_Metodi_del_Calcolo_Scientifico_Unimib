@@ -22,7 +22,7 @@ def main():
         solvers_to_run = [solver_map[args['solver']]]
         
     print(f"\n{'='*50}")
-    print(f" PROGETTO MCS - Analisi Sistema Lineare")
+    print(f" PROGETTO MCS - Solutori iterativi per Sistemi Lineari - UNIMIB")
     print(f" File: {args['file']}")
     print(f" Tolleranza: {args['tolerance']}")
     print(f"{'='*50}")
