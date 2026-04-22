@@ -5,4 +5,5 @@ __pycache__/
 .envrc
 Data/*.mtx
 Data/Plot/*.png
+Data/*.csv
 parametri.txt
