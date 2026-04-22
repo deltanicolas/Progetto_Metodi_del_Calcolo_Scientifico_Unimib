@@ -14,6 +14,7 @@ Il cuore del progetto è contenuto nella libreria `solvers.py`, la quale impleme
 * **Linguaggio:** Python
 * **Gestione Dati:** NumPy / SciPy 
 * **Plot dei Grafici:** Matplotlib
+* **Gestione file CSV** Pandas
 
 Tutte le dipendenze necessarie sono specificate nel file `requirements.txt`. Puoi installarle comodamente tramite `pip` eseguendo questo comando nel tuo terminale:
 
