@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 
 import traceback
 
@@ -21,11 +21,11 @@ def main():
     else:
         solvers_to_run = [solver_map[args['solver']]]
         
-    print(f"\n{'='*50}")
+    print(f"\n{'='*67}")
     print(f" PROGETTO MCS - Solutori iterativi per Sistemi Lineari - UNIMIB")
     print(f" File: {args['file']}")
     print(f" Tolleranza: {args['tolerance']}")
-    print(f"{'='*50}")
+    print(f"{'='*67}")
 
     for solver_name in solvers_to_run:
         try:
@@ -41,7 +41,7 @@ def main():
             print(f"\n[!] Errore durante l'esecuzione di {solver_name.upper()}:")
             print(f"    {e}")
 
-    print(f"\n{'='*50}\n")
+    print(f"\n{'='*67}\n")
 
 
 if __name__ == '__main__':
