@@ -1,6 +1,6 @@
 from utility import load_matrix, setup_system, compute_relative_error
 from solvers import MatSolvers
-import numpy as np
+
 
 def run_specific_test(path, method_name, tol):
     A = load_matrix(path)

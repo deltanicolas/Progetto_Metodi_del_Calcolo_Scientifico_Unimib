@@ -1,6 +1,4 @@
 import argparse
-from html import parser
-import os
 import pathlib
 
 

@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-from matplotlib.ticker import LogLocator, NullFormatter, ScalarFormatter
+from matplotlib.ticker import ScalarFormatter
 from pathlib import Path
 
 def generate_plots(csv_file="../Data/benchmark_results.csv"):
