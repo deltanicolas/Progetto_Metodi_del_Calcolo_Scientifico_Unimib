@@ -48,7 +48,7 @@ class ProgettoMCSApp(App):
         yield Footer()
 
     def on_mount(self) -> None:
-        self._log("[bold cyan]MCS Dashboard Pronta!\n seleziona un file, un metodo e una tolleranza per iniziare[/]\n [italic yellow]ctrl+r: esegui | ctrl+c: pulisci console | ctrl+q: esci [/]")
+        self._log("[bold white]MCS Dashboard Pronta! seleziona un file, un metodo e una tolleranza per iniziare[/]\n[italic yellow]Lista comandi:\nctrl+r: esegui\nctrl+c: pulisci console\nctrl+q: esci [/]")
         data_dir = next((p for p in DATA_DIRS if p.is_dir()), None)
         flist = self.query_one("#file_list", OptionList)
         
@@ -64,11 +64,10 @@ class ProgettoMCSApp(App):
 
     def action_clear(self) -> None:
         self.query_one("#console", RichLog).clear()
-        self._log(">>> [bold cyan]Console pulita[/]")
+        self._log(">>> [bold white]Console pulita[/]")
 
     def action_quit(self) -> None:
         self.exit()
-
     def action_run(self) -> None:
         flist, mlist = self.query_one("#file_list", OptionList), self.query_one("#method_list", OptionList)
         if flist.highlighted is None or mlist.highlighted is None: return
