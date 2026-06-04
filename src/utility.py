@@ -104,7 +104,7 @@ def plot_sparsity(A, matrix_name="Matrice"):
 
 
 if __name__ == "__main__":
-    test_file = "../Data/spa2.mtx" 
+    test_file = "../Data/spa1.mtx" 
     
     print(f"--- Test Utility ---")
     try:

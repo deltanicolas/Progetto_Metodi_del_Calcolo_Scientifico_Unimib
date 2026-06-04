@@ -1,4 +1,5 @@
 import numpy as np
+
 import time
 
 class MatSolvers:
@@ -58,7 +59,6 @@ class MatSolvers:
         it = 0
         conv = False
 
-        # TODO: va controllata anche dominanza diagonale?
         if np.any(D_diag == 0):
             print("Error: The matrix has zero diagonal entries. Gauss-Seidel method may not converge.") 
             return x, it, False, 0.0
@@ -76,11 +76,10 @@ class MatSolvers:
             if self._stopping_criterion(x) < self.tol:
                 conv = True
                 break
-
         end_t = time.perf_counter()
-        
+
         return x, it, conv, end_t - start_t
-    
+        
     def gradient(self):
         x = self._initial_guess()
         it = 0
